@@ -1,0 +1,158 @@
+{% extends "public/base.html" %}
+{% block content %}
+    <div class="container-scroller">
+      {% include 'users/sidebar.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        {% include 'users/navbar.html' %}
+        <!-- partial -->
+         <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <h3 class="mt-5">Live Streaming</h3>
+            
+<div class="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+           
+            </div>
+            <div class="col-12 col-lg-12 ">
+                <div class="card">
+                    <div class="card-body">
+                       
+                        
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="videos-tab" data-toggle="tab" href="#videos"
+                                        role="tab" aria-controls="videos" aria-selected="false">
+                                        <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
+                                        <span class="d-none d-sm-block">live programs</span>
+                                    </a>
+                                </li>
+                               
+                            </ul>
+                            
+                                                                                                                             
+                            <div class="tab-content">
+                                <div class="tab-pane fade active show" id="videos" role="tabpanel"
+                                    aria-labelledby="videos-tab">
+                                    
+                                      
+                                    <div class="card flex-row flex-wrap">
+                                        <div class="card-header border-0 w-250" >
+                                            
+                                          
+                                            <video class="w-100 h-100"  id="myvideo"  autoplay muted playsinline 
+                                         
+                                            {% for programme in programme  %}
+                                        
+                                            {% for file in programme.banners %}
+                                           
+
+                                             {% if   file.file_status=='live' %}
+                                             
+                                            poster="{{ url_for('admin.eventy_uploaded', file_path=file.file_url) }}">
+                                           
+                                                {% for file in programme.videos %}
+                                                
+                                                <source
+                                                class="active"
+                                                    src="{{ url_for('admin.eventy_uploaded', file_path=file.file_url) }}" type="video/mp4"> 
+                                                {% else %}
+                                                <source
+                                                class=""
+                                                    src="">
+                                                
+                                                    
+                                                {% endfor %}
+                                                {% else %}
+                                                 
+                                                {% endif %}
+                                                {% endfor %}
+                                               
+                                            </video>
+
+                                        </div>
+                                
+                                      
+                               {% endfor %}
+                               
+                                </div>
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+          
+   
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          {% include 'users/footer.html' %}
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+                <script>
+                var myvid = document.getElementById('myvideo');
+                // console.log(myvid)
+                debugger
+
+                myvid.addEventListener('ended', function(e) {
+                // get the active source and the next video source.
+                // I set it so if there's no next, it loops to the first one
+                var activesource = document.querySelector("#myvideo source.active");
+                var nextsource = document.querySelector("#myvideo source.active + source") || document.querySelector("#myvideo source:first-child");
+                
+                // deactivate current source, and activate next one
+                activesource.className = "";
+                nextsource.className = "active";
+
+                // update the video source and play
+                myvid.src = nextsource.src;
+                myvid.play();
+                });
+
+            </script> 
+        <script>/*
+            *  Copyright (c) 2016 The WebRTC project authors. All Rights Reserved.
+            *
+            *  Use of this source code is governed by a BSD-style license
+            *  that can be found in the LICENSE file in the root of the source
+            *  tree.
+            */
+            'use strict';
+            
+            const leftVideo = document.getElementById('myvideo');
+            const rightVideo = document.getElementById('rightVideo');
+            
+            leftVideo.addEventListener('canplay', () => {
+              let stream;
+              const fps = 0;
+              if (leftVideo.captureStream) {
+                stream = leftVideo.captureStream(fps);
+              } else if (leftVideo.mozCaptureStream) {
+                stream = leftVideo.mozCaptureStream(fps);
+              } else {
+                console.error('Stream capture is not supported');
+                stream = null;
+              }
+              rightVideo.srcObject = stream;
+            });</script>
+            <script>
+                var vid = document.getElementById("myVideo");
+vid.autoplay = true;
+vid.load();
+            </script>
+           
+
+           
+            {% endblock %}
+            

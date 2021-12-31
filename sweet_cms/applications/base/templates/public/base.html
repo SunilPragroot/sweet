@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+
+   
+    <title>
+      {% block page_title %} 
+      Sweet CMS
+       {% endblock %}
+    </title>
+    <meta
+      name="description"
+      content="{% block meta_description %}{% endblock %}"
+    />
+    <meta name="author" content="{% block meta_author %}{% endblock %}" />
+
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width" />
+    
+    <link rel="stylesheet" href= "{{ url_for('static', filename='assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet"  href= "{{ url_for('static', filename='assets/vendors/css/vendor.bundle.base.css')}}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet"  href= "{{ url_for('static', filename='assets/vendors/jvectormap/jquery-jvectormap.css')}}">
+    <link rel="stylesheet"href= "{{ url_for('static', filename='assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
+    <link rel="stylesheet" href= "{{ url_for('static', filename='assets/vendors/owl-carousel-2/owl.carousel.min.css')}}">>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css')}}" >
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.png')}}" >
+
+  </head>
+  <body>
+      {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='assets/vendors/js/vendor.bundle.base.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ url_for('static', filename='assets/vendors/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/vendors/progressbar.js/progressbar.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/vendors/jvectormap/jquery-jvectormap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/vendors/owl-carousel-2/owl.carousel.min.js')}}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ url_for('static', filename='assets/js/off-canvas.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/hoverable-collapse.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/misc.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/settings.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/todolist.js')}}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{{ url_for('static', filename='assets/js/dashboard.js')}}"></script>
+    <!-- end scripts -->
+  </body>
+</html>
+
